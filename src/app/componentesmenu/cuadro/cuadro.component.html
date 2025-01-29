@@ -1,0 +1,12 @@
+<div class="card" style="width: 18rem">
+  <img src="{{ recipe.imagen }}" class="card-img-top" />
+  <div class="card-body">
+    <h5 class="card-title">
+      {{ recipe ? recipe.nombreCuadro : "Sin titulo" }}
+    </h5>
+    <p>{{ recipe.description }}</p>
+    <a [routerLink]="['/detall', recipe.id]" class="btn btn-brand-orange"
+      >Entra a verlo!!</a
+    >
+  </div>
+</div>

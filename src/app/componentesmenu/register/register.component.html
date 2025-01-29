@@ -1,0 +1,43 @@
+<div class="containerform">
+  <div class="container mt-5">
+    <h2 class="mb-4">Formulario de Registro</h2>
+    <form [formGroup]="formulario" (ngSubmit)="crearCliente()">
+      <!-- Campo de Correo Electrónico -->
+      <div class="mb-3">
+        <label for="email" class="form-label">Correo Electrónico</label>
+        <input
+          formControlName="email"
+          type="email"
+          class="form-control"
+          id="email"
+        />
+      </div>
+      @if (formdata['email'].touched && formdata['email'].invalid) {
+      <div class="alert alert-danger">
+        <div>Correo electronico es requerido</div>
+      </div>
+      }
+
+      <!-- Campo de Contraseña -->
+      <div class="mb-3">
+        <label for="password" class="form-label">Contraseña</label>
+        <input
+          formControlName="password"
+          type="password"
+          class="form-control"
+          id="password"
+        />
+      </div>
+      @if (formdata['password'].touched && formdata['password'].invalid) {
+      <div class="alert alert-danger">
+        <div>contraseña es requerido</div>
+      </div>
+      }
+
+      <!-- Botón de Enviar -->
+      <button class="btn btn-primary" [disabled]="!formulario.valid">
+        Registrarse
+      </button>
+    </form>
+  </div>
+</div>

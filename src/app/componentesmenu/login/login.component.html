@@ -1,0 +1,52 @@
+<div class="container">
+  <h2>Formulario de Cliente</h2>
+  <form #clienteForm="ngForm" (ngSubmit)="sendLogin()">
+    <div class="mb-3">
+      <label for="correoelectronico" class="form-label">Email address</label>
+      <input
+        type="email"
+        name="correoelectronico"
+        [(ngModel)]="correoelectronico"
+        pattern=".*@.*"
+        class="form-control"
+        required
+        id="correoelectronico"
+        aria-describedby="emailHelp"
+        #emailInput="ngModel"
+        [ngClass]="{
+          'is-valid': emailInput.touched && emailInput.valid,
+          'is-invalid': emailInput.touched && !emailInput.valid
+        }"
+      />
+      @if ( emailInput.touched && !emailInput.valid) {
+      <div class="alert alert-danger">Email requerit en arroba</div>
+      }
+
+      <div id="emailHelp" class="form-text">
+        We'll never share your email with anyone else.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="contrasenya"
+        name="contrasenya"
+        [(ngModel)]="contrasenya"
+        #passwordInput="ngModel"
+        required
+        [ngClass]="{
+          'is-valid': passwordInput.touched && passwordInput.valid,
+          'is-invalid': passwordInput.touched && !passwordInput.valid
+        }"
+      />
+    </div>
+
+    <button class="btn btn-primary">Login</button>
+
+    <a [routerLink]="['/register']" routerLinkActive="router-link-active"
+      >Registrate ya!!</a
+    >
+  </form>
+</div>

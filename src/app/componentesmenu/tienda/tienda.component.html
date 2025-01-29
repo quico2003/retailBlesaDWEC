@@ -1,0 +1,23 @@
+<div>
+  <h1>Cuadros en exposicion</h1>
+
+  <form [formGroup]="search" role="search">
+    <input
+      type="search"
+      placeholder="search"
+      formControlName="searchCuadros"
+      name="searchCuadros"
+    />
+  </form>
+
+  @if (recipes.length > 0) {
+  <div class="container">
+    @for (recipe of recipes | filterCuadroPipe:serchValue; track $index) {
+
+    <app-cuadro [recipe]="recipe"></app-cuadro>
+    }
+  </div>
+  }@else {
+  <h1>No se an encontrado cuadros</h1>
+  }
+</div>

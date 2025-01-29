@@ -1,0 +1,40 @@
+<nav>
+  <div class="nav-container">
+    <div class="nav-logo">Galería de Arte</div>
+    <div class="nav-toggle" (click)="menuAbierto = !menuAbierto">☰</div>
+    <ul class="nav-menu" [class.active]="menuAbierto">
+      @if (logg) { @if (loggRol === true) {
+      <li>
+        <a [routerLink]="['inicioAdmin']" routerLinkActive="active">Inicio</a>
+      </li>
+      <li>
+        <a [routerLink]="['adminIntro123']" routerLinkActive="active"
+          >Introducir</a
+        >
+      </li>
+      <li>
+        <a [routerLink]="['adminDelete123']" routerLinkActive="active"
+          >Borrar</a
+        >
+      </li>
+      <li>
+        <a [routerLink]="['adminModif123']" routerLinkActive="active"
+          >Modificar</a
+        >
+      </li>
+      <app-logout></app-logout>
+      } @else {
+      <li><a [routerLink]="['inicio']" routerLinkActive="active">Inicio</a></li>
+      <li><a [routerLink]="['tienda']" routerLinkActive="active">Tienda</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <app-logout></app-logout>
+      }
+      <h4 class="user-email">{{ this.emailUsuario }}</h4>
+      } @else {
+      <li><a [routerLink]="['inicio']" routerLinkActive="active">Inicio</a></li>
+      <li><a [routerLink]="['tienda']" routerLinkActive="active">Tienda</a></li>
+      <li><a [routerLink]="['login']" routerLinkActive="active">Log in</a></li>
+      }
+    </ul>
+  </div>
+</nav>

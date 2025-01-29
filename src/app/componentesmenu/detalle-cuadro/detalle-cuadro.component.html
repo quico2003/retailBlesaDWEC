@@ -1,0 +1,14 @@
+<div class="artwork-container">
+  <img src="{{ recipe?.imagen }}" class="artwork-image" />
+  <div class="artwork-details">
+    <h1 class="artwork-title">{{ recipe?.nombreCuadro }}</h1>
+    <p class="artwork-artist">{{ recipe?.artista }}</p>
+    <p class="artwork-price">{{ recipe?.precio }}</p>
+    <p class="artwork-dimensions">
+      Alto:{{ recipe?.alto }} Ancho:{{ recipe?.largo }}
+    </p>
+    <div class="artwork-description">
+      <p>{{ recipe?.description }}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<section id="inicio" class="hero">
+  <h2>Descubre el arte que inspira</h2>
+  <p>Explora nuestra colección de cuadros de arte únicos y emocionales.</p>
+  <a [routerLink]="['/tienda']" class="btn">Ver Galería</a>
+</section>
+
+<section id="galeria" class="galeria">
+  <h2>Nuestra Galería</h2>
+  <div class="grid">
+    <div class="cuadro">
+      <img src="{{ recipecCuadros[0]?.imagen }}" alt="Cuadro 1" />
+      <h3>Obra Maestra 1</h3>
+    </div>
+    <div class="cuadro">
+      <img src="{{ recipecCuadros[1]?.imagen }}" alt="Cuadro 2" />
+      <h3>Obra Maestra 2</h3>
+    </div>
+    <div class="cuadro">
+      <img src="{{ recipecCuadros[2]?.imagen }}" alt="Cuadro 3" />
+      <h3>Obra Maestra 3</h3>
+    </div>
+  </div>
+</section>
+
+<section id="nosotros" class="nosotros">
+  <h2>Sobre Nosotros</h2>
+  <p>
+    Somos una galería dedicada a promover el arte y conectar a los amantes del
+    arte con las obras más excepcionales. Nuestro propósito es inspirar y
+    emocionar a través del arte.
+  </p>
+</section>
+
+@if (logg) {
+<section id="contacto" class="contacto">
+  <h2>Contacto</h2>
+  <form action="#" method="post">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" required />
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required />
+
+    <label for="mensaje">Mensaje:</label>
+    <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+
+    <button type="submit" class="btn">Enviar</button>
+  </form>
+</section>
+}
