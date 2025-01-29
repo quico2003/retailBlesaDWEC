@@ -1,0 +1,16 @@
+<div>
+    <h1>Cuadros en exposicion</h1>
+  
+    @if (recipes.length > 0) {
+    <div class="container">
+      @for (recipe of recipes; track $index) {
+  
+      <a [routerLink]="['/modificar', recipe.id]" class="btn btn-brand-orange">
+        <app-cuadro [recipe]="recipe"></app-cuadro>
+      </a>
+      }
+    </div>
+    }@else {
+    <h1>No se an encontrado cuadros</h1>
+    }
+</div>
