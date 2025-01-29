@@ -42,4 +42,4 @@ jobs:
         mkdir -p ~/.ssh
         ssh-keyscan -H ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
         echo "Added ${{ secrets.REMOTE_HOST }} to known_hosts."
-        sshpass -p "${REMOTE_PASSWORD}" scp -r ./dist/retailBlesaDWEC/browser/* ${REMOTE_USER}@${REMOTE_HOST}:/var/www/html/retailBlesaDWEC
+        sshpass -p "${REMOTE_PASSWORD}" scp -r ./dist/retail-blesa/browser/* ${REMOTE_USER}@${REMOTE_HOST}:/var/www/html/retailBlesaDWEC
