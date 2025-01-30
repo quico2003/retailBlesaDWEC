@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
 })
 export class TiendaComponent implements OnInit, OnDestroy{
 
-  posts: any[] = [];
+  
   private serchSubscription?: Subscription;
   public serchValue: string = '';
 

@@ -23,8 +23,7 @@ export class DetalleCuadroComponent implements OnInit {
       next: cuadro => {
         this.recipe = cuadro[0];
       },
-      error: err => console.log(err),
-      complete: () => console.log('corrected')
+      error: err => console.log(err)
     })
 
 

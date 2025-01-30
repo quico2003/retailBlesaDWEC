@@ -73,6 +73,13 @@ export class SupabaseService {
 
   }
 
+  //Metodo para modificar el cuadro
+  updateCuadro(id: number, datos: any): Observable<any>{
+    return from(this.supabase.from('cuadros')
+    .update(datos)
+    .match({id}));
+  }
+
 
   //Metodo para eliminar un cuadro
   deleteCuadro(id: string): Observable<any> {

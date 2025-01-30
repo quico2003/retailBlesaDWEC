@@ -1,31 +1,10 @@
-<div class="container text-center mt-4">
-  <h1 class="mb-4">Cuadros en Exposición</h1>
+<div class="container text-center mt-5">
+  <div class="card p-4 shadow-lg">
+    <h1 class="text-danger">¿Quieres borrar el cuadro con el ID {{ RecipeId }}?</h1>
 
-  <div class="d-flex justify-content-center mb-4">
-    <form [formGroup]="search" role="search" class="w-70">
-      <input
-        type="search"
-        class="form-control"
-        placeholder="Buscar cuadros..."
-        formControlName="searchCuadros"
-        name="searchCuadros"
-      />
-    </form>
-  </div>
-
-  @if (posts.length > 0) {
-  <div class="container">
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-      @for (posts of posts | filterCuadroPipe:serchValue; track $index) {
-
-      <div class="col">
-        <app-cuadro [recipe]="posts"></app-cuadro>
-      </div>
-
-      }
+    <div class="mt-3">
+      <button class="btn btn-danger me-2" (click)="borrarCuadro()">Borrar</button>
+      <button class="btn btn-secondary" [routerLink]="['/listaCuadros']" routerLinkActive="router-link-active">Volver</button>
     </div>
   </div>
-  } @else {
-  <h2 class="text-danger mt-4">No se han encontrado cuadros</h2>
-  }
 </div>

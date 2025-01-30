@@ -10,7 +10,8 @@
       <!-- Sección de botones según rol -->
       @if (logg) { @if (loggRol === true) {
       <!-- Botón de Borrar (para administradores) -->
-      <a [routerLink]="['/borrar', recipe.id]" class="btn btn-danger">Borrar</a>
+      <a [routerLink]="['/listaCuadros/borrar', recipe.id]" class="btn btn-danger">Borrar</a>
+      <a [routerLink]="['/listaCuadros/modificar', recipe.id]" class="btn btn-danger">Modificar</a>
       } @if (loggRol === false) {
       <!-- Botón de Like (para usuarios normales) -->
       <button class="btn btn-outline-primary" onclick="myFunction(this)">

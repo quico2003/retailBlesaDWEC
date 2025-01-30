@@ -1,3 +1,50 @@
-<div>
-    aqui se modifica el cuadro con un form con su info por defecto
-</div>
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="row w-100">
+        <div class="col-lg-5 col-md-7 col-sm-10 mx-auto">
+            <div class="card shadow-lg p-4">
+                <h3 class="text-center mb-3">Crear Nuevo Cuadro</h3>
+  
+                <form [formGroup]="formulario" (ngSubmit)="actualizarCuadro()"  class="d-grid gap-3">
+                    <!-- Nombre del Cuadro -->
+                    <div>
+                        <label for="nombreCuadro" class="form-label">Nombre del Cuadro:</label>
+                        <input id="nombreCuadro" formControlName="nombreCuadro" class="form-control" required/>
+                    </div>
+  
+                    <!-- Precio -->
+                    <div>
+                        <label for="precio" class="form-label">Precio:</label>
+                        <input id="precio" formControlName="precio" type="number" step="0.1" class="form-control" required/>
+                    </div>
+  
+                    <!-- Largo -->
+                    <div>
+                        <label for="largo" class="form-label">Largo (m):</label>
+                        <input id="largo" formControlName="largo" type="number" step="0.1" class="form-control" required/>
+                    </div>
+  
+                    <!-- Alto -->
+                    <div>
+                        <label for="alto" class="form-label">Alto (m):</label>
+                        <input id="alto" formControlName="alto" type="number" step="0.1" class="form-control" required/>
+                    </div>
+  
+                    <!-- Descripción -->
+                    <div>
+                        <label for="descripcion" class="form-label">Descripción:</label>
+                        <textarea id="descripcion" formControlName="description" class="form-control" rows="2" required></textarea>
+                    </div>
+  
+                    <!-- URL de la Imagen -->
+                    <div>
+                        <label for="imagen" class="form-label">URL de la Imagen:</label>
+                        <input id="imagen" formControlName="imagen" type="url" class="form-control" required/>
+                    </div>
+  
+                    <!-- Botón de Envío -->
+                    <button type="submit" class="btn btn-primary btn-lg w-100">Crear Cuadro</button>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>

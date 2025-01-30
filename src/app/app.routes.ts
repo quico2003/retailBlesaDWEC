@@ -18,10 +18,9 @@ export const routes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'inicioAdmin', canActivate: [guardadminGuard], component: InicioAdminComponent },
     { path: 'adminIntro123', canActivate: [guardadminGuard], component: IntroducirCuadrosComponent },
-    { path: 'adminDelete123', canActivate: [guardadminGuard], component: BorrarCuadrosComponent },
-    { path: 'adminModif123', canActivate: [guardadminGuard], component: ListarCuadrosComponent },
-    { path: 'borrar/:id', canActivate: [guardadminGuard], component: BorrarCuadrosComponent },
-    { path: 'modificar/:id', canActivate: [guardadminGuard], component: ModificarCuadrosComponent },
+    { path: 'listaCuadros', canActivate: [guardadminGuard], component: ListarCuadrosComponent },
+    { path: 'listaCuadros/borrar/:id', canActivate: [guardadminGuard], component: BorrarCuadrosComponent },
+    { path: 'listaCuadros/modificar/:id', canActivate: [guardadminGuard], component: ModificarCuadrosComponent },
     { path: 'detall/:id', component: DetalleCuadroComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'inicio' }
 ];
