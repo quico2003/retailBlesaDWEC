@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RecipeCuadros } from '../../Interface/recipeCuadros';
 import { SupabaseService } from '../../service/supabase.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-detalle-cuadro',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './detalle-cuadro.component.html',
   styleUrl: './detalle-cuadro.component.css'
 })

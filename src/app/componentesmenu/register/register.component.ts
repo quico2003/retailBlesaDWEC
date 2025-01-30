@@ -1,13 +1,11 @@
-
-import { core } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SupabaseService } from '../../service/supabase.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [ ReactiveFormsModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })

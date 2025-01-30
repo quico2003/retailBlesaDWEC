@@ -53,7 +53,7 @@ export class TiendaComponent implements OnInit, OnDestroy{
         this.recipes = cuadros;
       },
       error: err => console.log(err),
-      complete: () => console.log('Recived')
+
     })
   }
 

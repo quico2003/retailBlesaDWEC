@@ -93,22 +93,24 @@ export class SupabaseService {
 
   //Metodos login para logear, logaut para cerrar sesion y metodo para retornar el cliente
   login(email: string, password: string) {
-
     const loginResult = from(this.supabase.auth.signInWithPassword({
       email,
       password
     })).pipe(
       map(({ data, error }) => {
         if (error) {
-          throw error;
+          //Se captura el error y se lanza un mensaje para el error de credenciales
+          if (error.message.includes("Invalid login credentials")) {
+            throw new Error('Usuario o contraseña incorrectos');
+          }
+          throw error; //Lanzamos el error genérico si no es autenticacion
         }
         return data;
       }),
       tap(() => this.isLogged())
     );
-
+  
     return loginResult;
-
   }
 
   //Metodo para retornar los usuarios

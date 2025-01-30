@@ -1,52 +1,80 @@
-<div class="container">
-  <h2>Formulario de Cliente</h2>
-  <form #clienteForm="ngForm" (ngSubmit)="sendLogin()">
-    <div class="mb-3">
-      <label for="correoelectronico" class="form-label">Email address</label>
-      <input
-        type="email"
-        name="correoelectronico"
-        [(ngModel)]="correoelectronico"
-        pattern=".*@.*"
-        class="form-control"
-        required
-        id="correoelectronico"
-        aria-describedby="emailHelp"
-        #emailInput="ngModel"
-        [ngClass]="{
-          'is-valid': emailInput.touched && emailInput.valid,
-          'is-invalid': emailInput.touched && !emailInput.valid
-        }"
-      />
-      @if ( emailInput.touched && !emailInput.valid) {
-      <div class="alert alert-danger">Email requerit en arroba</div>
-      }
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-lg">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">Formulario de Login</h2>
 
-      <div id="emailHelp" class="form-text">
-        We'll never share your email with anyone else.
+          <form #clienteForm="ngForm" (ngSubmit)="sendLogin()">
+            <!-- Email -->
+            <div class="mb-3">
+              <label for="correoelectronico" class="form-label">Email address</label>
+              <input
+                type="email"
+                name="correoelectronico"
+                [(ngModel)]="correoelectronico"
+                pattern=".*@.*"
+                class="form-control"
+                required
+                id="correoelectronico"
+                aria-describedby="emailHelp"
+                #emailInput="ngModel"
+                [ngClass]="{
+                  'is-valid': emailInput.touched && emailInput.valid,
+                  'is-invalid': emailInput.touched && !emailInput.valid
+                }"
+              />
+              @if (emailInput.touched && !emailInput.valid) {
+                <div class="invalid-feedback">
+                  Por favor, ingresa un email válido.
+                </div>
+              }
+
+              <div id="emailHelp" class="form-text">
+                We'll never share your email with anyone else.
+              </div>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-3">
+              <label for="contrasenya" class="form-label">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="contrasenya"
+                name="contrasenya"
+                [(ngModel)]="contrasenya"
+                #passwordInput="ngModel"
+                required
+                [ngClass]="{
+                  'is-valid': passwordInput.touched && passwordInput.valid,
+                  'is-invalid': passwordInput.touched && !passwordInput.valid
+                }"
+              />
+              @if (passwordInput.touched && !passwordInput.valid) {
+                <div class="invalid-feedback">
+                  La contraseña es requerida.
+                </div>
+              }
+            </div>
+
+            @if (error != undefined) {
+              <p>{{error}}</p>
+            }
+
+            <!-- Login Button -->
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+
+            <!-- Register Link -->
+            <div class="mt-3 text-center">
+              <a [routerLink]="['/register']" class="text-decoration-none">
+                ¿No tienes cuenta? ¡Regístrate ahora!
+              </a>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input
-        type="password"
-        class="form-control"
-        id="contrasenya"
-        name="contrasenya"
-        [(ngModel)]="contrasenya"
-        #passwordInput="ngModel"
-        required
-        [ngClass]="{
-          'is-valid': passwordInput.touched && passwordInput.valid,
-          'is-invalid': passwordInput.touched && !passwordInput.valid
-        }"
-      />
-    </div>
-
-    <button class="btn btn-primary">Login</button>
-
-    <a [routerLink]="['/register']" routerLinkActive="router-link-active"
-      >Registrate ya!!</a
-    >
-  </form>
+  </div>
 </div>
+

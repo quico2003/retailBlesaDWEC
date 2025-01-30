@@ -1,40 +1,62 @@
-<nav>
-  <div class="nav-container">
-    <div class="nav-logo">Galería de Arte</div>
-    <div class="nav-toggle" (click)="menuAbierto = !menuAbierto">☰</div>
-    <ul class="nav-menu" [class.active]="menuAbierto">
-      @if (logg) { @if (loggRol === true) {
-      <li>
-        <a [routerLink]="['inicioAdmin']" routerLinkActive="active">Inicio</a>
-      </li>
-      <li>
-        <a [routerLink]="['adminIntro123']" routerLinkActive="active"
-          >Introducir</a
-        >
-      </li>
-      <li>
-        <a [routerLink]="['adminDelete123']" routerLinkActive="active"
-          >Borrar</a
-        >
-      </li>
-      <li>
-        <a [routerLink]="['adminModif123']" routerLinkActive="active"
-          >Modificar</a
-        >
-      </li>
-      <app-logout></app-logout>
-      } @else {
-      <li><a [routerLink]="['inicio']" routerLinkActive="active">Inicio</a></li>
-      <li><a [routerLink]="['tienda']" routerLinkActive="active">Tienda</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-      <app-logout></app-logout>
-      }
-      <h4 class="user-email">{{ this.emailUsuario }}</h4>
-      } @else {
-      <li><a [routerLink]="['inicio']" routerLinkActive="active">Inicio</a></li>
-      <li><a [routerLink]="['tienda']" routerLinkActive="active">Tienda</a></li>
-      <li><a [routerLink]="['login']" routerLinkActive="active">Log in</a></li>
-      }
-    </ul>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <!-- Logo -->
+    <a class="navbar-brand" href="#">Galería de Arte</a>
+
+    <!-- Botón de menú responsive -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menú -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        @if (logg) { 
+          @if (loggRol === true) {
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['inicioAdmin']" routerLinkActive="active">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['adminIntro123']" routerLinkActive="active">Introducir</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['adminDelete123']" routerLinkActive="active">Borrar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['adminModif123']" routerLinkActive="active">Modificar</a>
+            </li>
+            <li class="nav-item">
+              <app-logout></app-logout>
+            </li>
+          } @else {
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['inicio']" routerLinkActive="active">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['tienda']" routerLinkActive="active">Tienda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contacto">Contacto</a>
+            </li>
+            <li class="nav-item">
+              <app-logout></app-logout>
+            </li>
+          }
+          <li class="nav-item">
+            <span class="navbar-text text-light ms-3">{{ this.emailUsuario }}</span>
+          </li>
+        } @else {
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['inicio']" routerLinkActive="active">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['tienda']" routerLinkActive="active">Tienda</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['login']" routerLinkActive="active">Log in</a>
+          </li>
+        }
+      </ul>
+    </div>
   </div>
 </nav>

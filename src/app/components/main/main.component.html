@@ -4,23 +4,25 @@
   <a [routerLink]="['/tienda']" class="btn">Ver Galería</a>
 </section>
 
+@if (recipecCuadros.length >= 3) {
 <section id="galeria" class="galeria">
   <h2>Nuestra Galería</h2>
   <div class="grid">
     <div class="cuadro">
       <img src="{{ recipecCuadros[0]?.imagen }}" alt="Cuadro 1" />
-      <h3>Obra Maestra 1</h3>
+      <h3>{{ recipecCuadros[0].nombreCuadro }}</h3>
     </div>
     <div class="cuadro">
       <img src="{{ recipecCuadros[1]?.imagen }}" alt="Cuadro 2" />
-      <h3>Obra Maestra 2</h3>
+      <h3>{{ recipecCuadros[1].nombreCuadro }}</h3>
     </div>
     <div class="cuadro">
       <img src="{{ recipecCuadros[2]?.imagen }}" alt="Cuadro 3" />
-      <h3>Obra Maestra 3</h3>
+      <h3>{{ recipecCuadros[2].nombreCuadro }}</h3>
     </div>
   </div>
 </section>
+}
 
 <section id="nosotros" class="nosotros">
   <h2>Sobre Nosotros</h2>
