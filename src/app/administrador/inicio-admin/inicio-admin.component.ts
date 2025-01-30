@@ -29,7 +29,6 @@ export class InicioAdminComponent implements OnInit {
   getNumberUsers() {
     this.supabaseService.getUsers().subscribe({
       next: usuarios => {
-        console.log('Número de usuarios: ', usuarios.data.length);
         this.numberUsers = usuarios.data;
 
         if (this.chart) {
@@ -46,7 +45,6 @@ export class InicioAdminComponent implements OnInit {
   getNumberCuadros() {
     this.supabaseService.getCuadros().subscribe({
       next: cuadros => {
-        console.log('Número de cuadros: ', cuadros.length);
         this.numberCuadros = cuadros;
 
         if (this.chart) {

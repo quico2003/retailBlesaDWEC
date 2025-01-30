@@ -8,18 +8,24 @@
 <section id="galeria" class="galeria">
   <h2>Nuestra Galería</h2>
   <div class="grid">
-    <div class="cuadro">
-      <img src="{{ recipecCuadros[0]?.imagen }}" alt="Cuadro 1" />
-      <h3>{{ recipecCuadros[0].nombreCuadro }}</h3>
-    </div>
-    <div class="cuadro">
-      <img src="{{ recipecCuadros[1]?.imagen }}" alt="Cuadro 2" />
-      <h3>{{ recipecCuadros[1].nombreCuadro }}</h3>
-    </div>
-    <div class="cuadro">
-      <img src="{{ recipecCuadros[2]?.imagen }}" alt="Cuadro 3" />
-      <h3>{{ recipecCuadros[2].nombreCuadro }}</h3>
-    </div>
+    <a [routerLink]="['/detall', recipecCuadros[0].id]" class="enlace">
+      <div class="cuadro">
+        <img src="{{ recipecCuadros[0].imagen }}" alt="Cuadro 1" />
+        <h3>{{ recipecCuadros[0].nombreCuadro }}</h3>
+      </div>
+    </a>
+    <a [routerLink]="['/detall', recipecCuadros[1].id]" class="enlace">
+      <div class="cuadro">
+        <img src="{{ recipecCuadros[1].imagen }}" alt="Cuadro 2" />
+        <h3>{{ recipecCuadros[1].nombreCuadro }}</h3>
+      </div>
+    </a>
+    <a [routerLink]="['/detall', recipecCuadros[2].id]" class="enlace">
+      <div class="cuadro">
+        <img src="{{ recipecCuadros[2].imagen }}" alt="Cuadro 3" />
+        <h3>{{ recipecCuadros[2].nombreCuadro }}</h3>
+      </div>
+    </a>
   </div>
 </section>
 }

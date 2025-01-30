@@ -23,7 +23,7 @@ export class IntroducirCuadrosComponent implements OnInit {
       largo: [2, [Validators.required, Validators.min(0.5)]],
       alto: [2, [Validators.required, Validators.min(0.5)]],
       description: ['Aqui va una pequeña descripcion del preducto...', [Validators.required, Validators.minLength(5)]],
-      imagen: ['https://static.vecteezy.com/system/resources/previews/016/916/479/non_2x/placeholder-icon-design-free-vector.jpg']
+      imagen: ['https://picsum.photos/500/500']
     })
   }
 

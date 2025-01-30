@@ -126,7 +126,6 @@ export class SupabaseService {
       const { data: { user }, error } = await this.supabase.auth.getUser();
 
       if (error) {
-        console.error('Error fetching user:', error);
         this.loggedSubject.next(false);
         return;
       }

@@ -23,8 +23,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
 
-
-
     this.logg = this.supabaseService.loggedSubject.getValue();
     this.supabaseService.loggedSubject.subscribe(logged => this.logg = logged);
     this.supabaseService.isLogged();

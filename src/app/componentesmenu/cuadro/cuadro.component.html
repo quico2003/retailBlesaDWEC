@@ -5,7 +5,18 @@
       {{ recipe ? recipe.nombreCuadro : "Sin titulo" }}
     </h5>
     <p>{{ recipe.description }}</p>
-    <a [routerLink]="['/detall', recipe.id]" class="btn btn-warning">Info.</a>
-
+    <div class="d-flex justify-content-between align-items-center">
+      <a [routerLink]="['/detall', recipe.id]" class="btn btn-warning">Info.</a>
+      <!-- Sección de botones según rol -->
+      @if (logg) { @if (loggRol === true) {
+      <!-- Botón de Borrar (para administradores) -->
+      <a [routerLink]="['/borrar', recipe.id]" class="btn btn-danger">Borrar</a>
+      } @if (loggRol === false) {
+      <!-- Botón de Like (para usuarios normales) -->
+      <button class="btn btn-outline-primary" onclick="myFunction(this)">
+        <i class="fa fa-thumbs-up"></i>
+      </button>
+      } }
+    </div>
   </div>
 </div>
