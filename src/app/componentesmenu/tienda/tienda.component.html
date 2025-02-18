@@ -17,7 +17,7 @@
   @if (recipes.length > 0) {
     <div class="container">
       <div class="row row-cols-1 row-cols-md-3 g-4">
-        @for (recipe of recipes | filterCuadroPipe:serchValue; track $index) {
+        @for (recipe of recipes; track $index) {
           <div class="col">
             <app-cuadro [recipe]="recipe"></app-cuadro>
           </div>

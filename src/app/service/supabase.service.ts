@@ -31,34 +31,45 @@ export class SupabaseService {
 
     let query = this.supabase.from(table).select('*');
 
-    //Si se proporciona parametro se aplica con el metodo match
-    if (search) {
-      query = query?.match(search);
+  if (search) {
+    // Si el objeto `search` tiene un campo de texto, usa ilike() en lugar de match()
+    const key = Object.keys(search)[0]; // Obtiene la clave del filtro
+    const value = Object.values(search)[0]; // Obtiene el valor del filtro
+
+    if (typeof value === 'string' && value.includes('%')) {
+      query = query.ilike(key, value);
+    } else {
+      query = query.match(search);
     }
+  }
 
-    //Si se proporciona id se aplica con el metodo in
-    if (ids) {
-      query = query?.in(idField ? idField : 'id', ids);
-    }
+  if (ids) {
+    query = query.in(idField ? idField : 'id', ids);
+  }
 
-    //Ejecuta consulta
-    const { data, error } = await query;
+  const { data, error } = await query;
+  if (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
 
-    //Si hay error se lanza excepcion
-    if (error) {
-      console.error('Error fetching data:', error);
-      throw error;
-    }
-
-    return data;
+  return data;
   }
 
   //Metodo para obtener cuadros
   getCuadros(search?: string): Observable<RecipeCuadros[]> {
-    //Se llama a getdataObservable, se da la opcion de que se puedan poner filtros sinos llama a todos los cuadros
-    return this.getDataObservable(
-      'cuadros',
-      search ? { id: search } : undefined
+    let query = this.supabase.from('cuadros').select('*');
+  
+    if (search && search.trim() !== '') {
+      query = query.ilike('nombreCuadro', `%${search}%`); // Filtrar por coincidencia parcial
+    }
+  
+    return from(query).pipe(
+      map(response => response.data || []), // Asegurar que no haya valores nulos
+      catchError(error => {
+        console.error('Error al obtener cuadros:', error);
+        return of([]); // Evita que la app se rompa si hay un error
+      })
     );
   }
 

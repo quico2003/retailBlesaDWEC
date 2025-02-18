@@ -6,7 +6,7 @@ import { CuadroComponent } from '../cuadro/cuadro.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SearchService } from '../../service/search.service';
 import { FilterCuadroPipePipe } from '../../pipes/filter-cuadro-pipe.pipe';
-import { Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged, Subscription, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-tienda',
@@ -29,32 +29,31 @@ export class TiendaComponent implements OnInit, OnDestroy{
     })
   }
 
-  
-
-
 
   ngOnInit(): void {
+    // Cargar todos los cuadros al iniciar
     this.getColeccionCuadros();
-
-    this.search.get('searchCuadros')?.valueChanges.subscribe(this.searchService.searchSubject)
-    this.serchSubscription = this.searchService.searchSubject.subscribe(
-      searchValue => {
-        this.serchValue = searchValue;
-      }
-    )
+  
+    // Escuchar cambios en la búsqueda
+    this.serchSubscription = this.search.get('searchCuadros')?.valueChanges
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        switchMap(searchTerm => this.supabaseService.getCuadros(searchTerm))
+      )
+      .subscribe(cuadros => {
+        this.recipes = cuadros;
+      });
   }
-
-
-
-
+  
+  // Método para obtener todos los cuadros sin filtro
   getColeccionCuadros() {
     this.supabaseService.getCuadros().subscribe({
       next: cuadros => {
         this.recipes = cuadros;
       },
       error: err => console.log(err),
-
-    })
+    });
   }
 
 
