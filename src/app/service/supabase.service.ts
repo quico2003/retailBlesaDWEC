@@ -84,6 +84,18 @@ export class SupabaseService {
 
   }
 
+  getCuadroById(id:string): Observable<RecipeCuadros | null>{
+    return from(
+      this.supabase.from('cuadros').select('*').eq('id', id).single()
+    ).pipe(
+      map(response => response.data || null), // Asegura que retorne null si no hay datos
+      catchError(error => {
+        console.error('Error al obtener el cuadro:', error);
+        return of(null); // Evita que la app se rompa si hay un error
+      })
+    )
+  }
+
   //Metodo para modificar el cuadro
   updateCuadro(id: number, datos: any): Observable<any>{
     return from(this.supabase.from('cuadros')

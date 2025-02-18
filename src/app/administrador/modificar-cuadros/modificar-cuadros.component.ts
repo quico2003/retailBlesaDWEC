@@ -10,38 +10,48 @@ import { Router } from '@angular/router';
   templateUrl: './modificar-cuadros.component.html',
   styleUrl: './modificar-cuadros.component.css'
 })
-export class ModificarCuadrosComponent implements OnInit{
+export class ModificarCuadrosComponent implements OnInit {
   
-  @Input('id') RecipeId?: string;
+  @Input('id') RecipeId?: string | null;
   formulario!: FormGroup;
-  public recipe: RecipeCuadros | undefined;
+  public recipe: RecipeCuadros | null = null;
   
+  constructor(
+    private supabaseService: SupabaseService, 
+    private formBuilder: FormBuilder, 
+    private route: Router
+  ) {}
 
-  constructor(private supabaseService:SupabaseService, private formBuilder:FormBuilder, private route:Router){ }
-  
-  
   ngOnInit(): void {
-    this.cuadroAModificar();
-
+    // Primero inicializamos el formulario
     this.formulario = this.formBuilder.group({
-      nombreCuadro: [this.recipe?.nombreCuadro || '', [Validators.required, Validators.minLength(4)]],
-      precio: [this.recipe?.precio ?? '', [Validators.required, Validators.min(0.5)]],
-      largo: [this.recipe?.largo ?? '', [Validators.required, Validators.min(0.5)]],
-      alto: [this.recipe?.alto ?? '', [Validators.required, Validators.min(0.5)]],
-      description: [this.recipe?.description || '', [Validators.required, Validators.minLength(5)]],
-      imagen: [this.recipe?.imagen || '']
-    })
-    
+      nombreCuadro: ['', [Validators.required, Validators.minLength(4)]],
+      precio: ['', [Validators.required, Validators.min(0.5)]],
+      largo: ['', [Validators.required, Validators.min(0.5)]],
+      alto: ['', [Validators.required, Validators.min(0.5)]],
+      description: ['', [Validators.required, Validators.minLength(5)]],
+      imagen: ['']
+    });
+
+    // Luego, si hay una ID, cargamos el cuadro a modificar
+    if (this.RecipeId) {
+      this.cuadroAModificar();
+    }
   }
 
-  actualizarCuadro(){
+  actualizarCuadro(): void {
     if (this.formulario.invalid) {
-      alert('Porfabor rellena todos los campos correctamente.')
+      alert('Por favor, rellena todos los campos correctamente.');
+      return;
+    }
+
+    if (!this.RecipeId) {
+      alert('Error: No se encontró el ID del cuadro.');
       return;
     }
 
     this.supabaseService.updateCuadro(Number(this.RecipeId), this.formulario.value).subscribe({
-      next: (response) => {
+      next: () => {
         alert('Cuadro actualizado con éxito');
         this.route.navigate(['/listaCuadros']); // Redirigir después de actualizar
       },
@@ -49,24 +59,26 @@ export class ModificarCuadrosComponent implements OnInit{
         console.error('Error al actualizar cuadro:', error);
         alert('Hubo un error al actualizar el cuadro');
       }
-    })
+    });
   }
 
-  cuadroAModificar(){
-    this.supabaseService.getCuadros(this.RecipeId).subscribe({
+  private cuadroAModificar(): void {
+    if (!this.RecipeId) {
+      console.error('Error: No hay ID para buscar el cuadro.');
+      return;
+    }
+
+    this.supabaseService.getCuadroById(this.RecipeId).subscribe({
       next: cuadroModif => {
-        this.recipe = cuadroModif[0];
-        this.formulario.patchValue(this.recipe);
+        if (cuadroModif) {
+          this.recipe = cuadroModif;
+          this.formulario.patchValue(this.recipe);
+        } else {
+          console.warn('No se encontró un cuadro con el ID proporcionado.');
+        }
       },
-      error: err => console.log(err)
-
-    })
-
+      error: err => console.error('Error al obtener el cuadro:', err)
+    });
   }
-
-
-  
-  
-
 }
 

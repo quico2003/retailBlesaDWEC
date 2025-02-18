@@ -11,23 +11,25 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 })
 export class DetalleCuadroComponent implements OnInit {
 
-  @Input('id') RecipeId?: string;
-  public recipe: RecipeCuadros | undefined;
+  @Input('id') RecipeId?: string | null;
+  public recipe?: RecipeCuadros | null;
 
-  constructor(private supabaseService: SupabaseService) {
-
-  }
+  constructor(private supabaseService: SupabaseService) {}
 
   ngOnInit(): void {
-    this.supabaseService.getCuadros(this.RecipeId).subscribe({
-      next: cuadro => {
-        this.recipe = cuadro[0];
-      },
-      error: err => console.log(err)
-    })
-
-
+    if (this.RecipeId) {
+      this.obtenerCuadro(this.RecipeId);
+    }
   }
 
 
+  private obtenerCuadro(id: string): void {
+    this.supabaseService.getCuadroById(id).subscribe({
+      next: cuadro => {
+        this.recipe = cuadro;
+        console.log('Cuadro encontrado:', this.recipe);
+      },
+      error: err => console.error('Error al obtener cuadro:', err)
+    });
+  }
 }
